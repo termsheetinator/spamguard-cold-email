@@ -174,7 +174,7 @@ SpamGuard ships as part of **[Proximity Cold Email](https://github.com/termsheet
 
 **×**
 
-**Advisory Incubator™** — AI-enabled advisory for commercial finance and revenue teams
+**Advisory Incubator™** — AI & Tech Enabled Advisory
 
 <br/>
 
