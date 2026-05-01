@@ -8,9 +8,8 @@ echo ""
 echo "Installing SpamGuard..."
 echo ""
 
-mkdir -p "$SKILL_DIR"
-
-curl -fsSL "$BASE_URL/spamguard.md" -o "$SKILL_DIR/spamguard.md"
+mkdir -p "$SKILL_DIR/spamguard"
+curl -fsSL "$BASE_URL/spamguard.md" -o "$SKILL_DIR/spamguard/SKILL.md"
 echo "  ✓ /spamguard installed"
 
 echo ""
