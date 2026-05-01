@@ -173,6 +173,14 @@ Open [Claude Code](https://claude.ai/code) in any directory and run:
 
 Paste your copy. Get a clean scan.
 
+## Update
+
+Already installed? Re-run the same command. It overwrites the skill and the word list with the latest version.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/termsheetinator/spamguard-cold-email/main/install.sh | bash
+```
+
 ---
 
 ## Also Included In
