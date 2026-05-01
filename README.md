@@ -18,9 +18,9 @@
 
 ## What This Is
 
-A Claude Code skill that scans cold email copy against a comprehensive deliverability ruleset — then rewrites every violation clean.
+A Claude Code skill that scans cold email copy against a comprehensive deliverability ruleset — flags every violation, rewrites every flagged line in plain English, then runs the clean version through an internal audit loop until it passes with zero violations before it reaches you.
 
-Paste any copy: subject lines, email bodies, follow-up sequences, CTAs, opener lines, LinkedIn DMs, or any custom variable. SpamGuard flags every trigger word, banned phrase, and formatting violation with a specific plain-language fix, then produces a clean version ready to send.
+Paste any copy: subject lines, email bodies, follow-up sequences, CTAs, opener lines, LinkedIn DMs, or any custom variable.
 
 No setup. No memory file. Paste and scan.
 
@@ -32,8 +32,9 @@ No setup. No memory file. Paste and scan.
 SPAMGUARD COVERAGE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  178+  banned single words
+  300+  banned single words
          — including compound and hyphenated forms
+         — lower-cost, no-cost, interest-free, money-back
          — plurals of banned words are also banned
          — detection: whole-word AND substring match
 
@@ -46,18 +47,20 @@ SPAMGUARD COVERAGE
          → Tech phishing-like phrases
          → Gambling, adult & blacklisted terms
 
-   14   banned follow-up phrases
-         — the clichés that signal a template instantly
+   26   banned follow-up phrases
+         — clichés that signal a template instantly
 
-    1   canonical substitution map
-         — guided rewrites for every flagged word
-         — 60+ entries with safe alternatives
+    1   internal audit loop
+         — clean version re-scanned before delivery
+         — rewrites until zero violations, then stops
+         — audit pass count shown in output
 
-    4   formatting checks
+    5   formatting checks
          → ALL CAPS anywhere in subject or body
          → Em dashes (—) — the AI giveaway
          → Multiple exclamation marks
          → Excessive links
+         → Promotional formatting
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -78,50 +81,74 @@ Works on:
 
 ## Output Format
 
-Every scan returns the same structure:
+Every scan returns the same structure — clean, readable, actionable:
 
 ```
-SCAN RESULTS
-────────────────────────────────────────
-Total violations: [n]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SPAMGUARD SCAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Banned single words:
-- "[exact token in context]"
-  → banned word: [word]
-  → rewrite: [plain rewrite of the line]
+  Total violations: [n]
 
-Banned phrases:
-- "[exact phrase]" → rewrite: [plain rewrite]
+  ── Banned single words ──────────────────────
+  "[exact token in context]"
+    → word:    [banned word]
+    → rewrite: [plain rewrite of the line]
 
-High-risk phrases:
-- "[exact phrase]" → category: [name] → rewrite: [fix]
+  ── Banned phrases ───────────────────────────
+  "[exact phrase]"
+    → rewrite: [plain rewrite]
 
-Formatting violations:
-- [flag] → fix: [what to do]
+  ── High-risk phrases ────────────────────────
+  "[exact phrase]"
+    → category: [name]
+    → rewrite:  [fix]
 
-────────────────────────────────────────
-CLEAN VERSION
+  ── Formatting ───────────────────────────────
+  [flag] → [what to do]
 
-[Full rewrite — every violation resolved]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  CLEAN VERSION
+  Internal audit: [n] pass(es) — zero violations confirmed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-────────────────────────────────────────
-VERDICT
+  [Full rewrite — every violation resolved,
+   audited clean before delivery]
 
-[One sentence: violations found, severity, send-ready status]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  VERDICT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  [One sentence: violations found, audit passes,
+   send-ready confirmation]
 ```
 
 ---
 
-## The Substitution Principle
+## The Rewrite Principle
 
-SpamGuard does not just swap words. Every flagged line gets rewritten in plain language.
+SpamGuard does not swap words. It rewrites lines from the idea underneath them.
 
 ```
-Replace  →  promotional language   with  observational language
-Replace  →  pressure               with  permission
-Replace  →  hype                   with  specificity
+WHAT IT DOES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-If it sounds like an ad, a scam, or a coupon — rewrite it.
+  1. Read the flagged line
+  2. Identify what it's actually trying to say
+  3. Write that in plain English — grade 5 level
+  4. Check every word in the rewrite against
+     the banned list before committing
+  5. If anything hits — rewrite the whole
+     line again from scratch
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Replace  →  promotional language   with  observational
+  Replace  →  pressure               with  permission
+  Replace  →  hype                   with  specificity
+
+  If it sounds like an ad, a scam, or a coupon
+  — rewrite it.
 ```
 
 ---
@@ -159,6 +186,7 @@ SpamGuard ships as part of **[Proximity Cold Email](https://github.com/termsheet
 | File | Purpose |
 |---|---|
 | `spamguard.md` | The Claude Code skill — installs to `~/.claude/skills/` |
+| `spamwords.md` | Master spam word and phrase reference — installed to your project directory |
 | `install.sh` | One-command installer |
 
 ---

@@ -9,6 +9,7 @@ DIM='\033[2m'
 RESET='\033[0m'
 
 SKILL_DIR="$HOME/.claude/skills"
+MEMORY_DIR="$(pwd)"
 BASE_URL="https://raw.githubusercontent.com/termsheetinator/spamguard-cold-email/main"
 
 # Typing effect
@@ -64,7 +65,11 @@ sleep 0.3
 
 mkdir -p "$SKILL_DIR/spamguard"
 (curl -fsSL "$BASE_URL/spamguard.md" -o "$SKILL_DIR/spamguard/SKILL.md" 2>/dev/null) &
-spinner $! "/spamguard  — 178+ banned words · 7 phrase categories · full rewrite"
+spinner $! "/spamguard  — 300+ banned words · audit loop · plain-English rewrites"
+sleep 0.2
+
+(curl -fsSL "$BASE_URL/spamwords.md" -o "$MEMORY_DIR/spamwords.md" 2>/dev/null) &
+spinner $! "spamwords.md  — master spam word reference installed"
 sleep 0.2
 
 printf "\n"
