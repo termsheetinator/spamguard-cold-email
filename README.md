@@ -1,8 +1,8 @@
 <div align="center">
 
-# SpamGuard
+<img src="assets/spamguard-banner.png" alt="SpamGuard — AI-Powered Spam Protection for Cold Email" width="100%"/>
 
-### Scan any cold email copy. Flag every spam trigger. Get a clean rewrite.
+<br/><br/>
 
 [![License](https://img.shields.io/badge/license-Proprietary-black?style=flat-square)](./LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-orange?style=flat-square)](https://claude.ai/code)
@@ -70,26 +70,9 @@ Works on:
 
 ## How It Works
 
-```mermaid
-flowchart TD
-    A([Run /spamguard]) --> B[Paste your copy]
-    B --> C[Scan — banned single words]
-    C --> D[Scan — banned phrases]
-    D --> E[Scan — high-risk phrase categories]
-    E --> F[Formatting check]
-    F --> G{Any violations?}
-
-    G -- Yes --> H[Flag each violation\nwith exact fix]
-    H --> I[Rewrite clean version]
-    G -- No --> I
-
-    I --> J([Clean copy\nready to send])
-
-    style A fill:#1a1a1a,color:#fff,stroke:#1a1a1a
-    style J fill:#1a1a1a,color:#fff,stroke:#1a1a1a
-    style H fill:#8b0000,color:#fff,stroke:#8b0000
-    style I fill:#2d6a4f,color:#fff,stroke:#2d6a4f
-```
+<div align="center">
+<img src="assets/spamguard-full-workflow-visual.png" alt="How SpamGuard Works — full workflow visual" width="100%"/>
+</div>
 
 ---
 
