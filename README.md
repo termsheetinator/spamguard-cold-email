@@ -187,7 +187,7 @@ SpamGuard ships as part of **[Proximity Cold Email](https://github.com/termsheet
 
 **Brought to you by**
 
-[**InfraSuite**](https://infrasuite.io) — Enterprise Microsoft mailboxes for cold email operators
+[**InfraSuite**](https://infrasuite.io) — Enterprise Grade Cold-Email Mailboxes
 
 **×**
 
