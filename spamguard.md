@@ -179,11 +179,87 @@ If after 3 passes the clean version still contains violations, stop and tell the
 
 ---
 
+## Phase 6 — Clarity Pass (Mandatory After Phase 5)
+
+Runs after Phase 5 delivers a spam-clean version. The clean version must also pass a clarity check before delivery.
+
+The goal: the reader understands exactly what is being said on the first read. No inference. No re-reading. No brain calories spent.
+
+**Check 1 — Original intent preserved**
+
+Compare the clean version to the original. Is the core message still there? Is the same idea being communicated? If the rewrite drifted — any meaning lost, any claim softened or changed — bring it back without reintroducing spam words.
+
+**Check 2 — Word simplicity**
+
+Every word must be the simplest everyday word that carries the same meaning. If a shorter or more common word exists, use it.
+
+| Complex | Simple |
+|---|---|
+| utilize | use |
+| commence | start |
+| subsequently | then |
+| in order to | to |
+| regarding | about |
+| assistance | help |
+| approximately | about |
+| nevertheless | but |
+| facilitate | help |
+| multiple | a few / several |
+| individuals | people |
+| in the event that | if |
+| due to the fact that | because |
+| a significant number of | many |
+| in terms of | rewrite the sentence |
+| on the more competitive side of what's out there | better than most / better than you'd find on your own |
+| groups that come in | lenders that come in |
+| covered by the other party | paid by the other side |
+| nothing comes out of yours | nothing out of your pocket |
+| at this stage | at this point |
+| in the market for | looking for |
+
+**Check 3 — No ambiguity**
+
+Each sentence must mean one thing. If it could be read two ways — rewrite it. If the reader has to connect dots between two sentences — make the connection explicit in the copy.
+
+Ask for each sentence: what is the one thing this is saying? If the answer takes more than five words — simplify the sentence.
+
+**Check 4 — No filler**
+
+Remove any word that adds no meaning: just, really, very, actually, basically, essentially, kind of, sort of, simply, clearly, obviously, needless to say, as you know, it goes without saying.
+
+**Check 5 — Grade 5 test**
+
+Read the copy aloud. Would a ten-year-old understand every sentence immediately on the first read? If any sentence requires re-reading — shorten it. If any word requires thought — replace it.
+
+**After the clarity pass:**
+
+If any changes were made, re-run Phase 5 (spam audit loop) on the clarity-revised version. The version must pass both Phase 5 and Phase 6 before delivery. Note both in the output.
+
+---
+
 ## How to Rewrite Flagged Lines
 
 Do not swap words. Rewrite the line.
 
 The goal of a rewrite is not to find a synonym for the banned word. It is to say the same thing in plain English that a ten-year-old could read and understand — without using any banned word.
+
+**Intent check — run this before rewriting any flagged line:**
+
+Before rewriting a line that makes a factual claim about fees, compensation, outcomes, timelines, or how something works — ask whether the rewrite could say something the sender did not mean or cannot truthfully support.
+
+If the original is ambiguous about something the reader would care about — **ask before rewriting**. Do not guess what they meant.
+
+When to ask:
+- Compensation claims: "we work for free" — does free mean no fee at all, or is the fee paid by another party at closing? Rewriting this wrong could be misleading to the prospect.
+- Outcome claims: "we get you the best rates" — what can they actually truthfully say about what they deliver?
+- Process claims: any description of how something works where the rewrite could imply a different process than what actually happens.
+- Timing claims: "we close in 30 days" — if the rewrite changes the implied timeline, flag it.
+
+Format for asking: quote the original line, state the ambiguity in one sentence, ask the specific question needed to rewrite it accurately.
+
+Example: *"we work for free, which means there's no retainers or upfront costs to you" — before I rewrite this: does the prospect pay nothing at all, or is your fee structured so it comes from the lender or at closing on their side? The rewrite changes depending on the answer."*
+
+Only skip the intent check if the claim is clearly unambiguous and the rewrite preserves the exact same meaning.
 
 **The rewrite process — apply to every flagged line:**
 
@@ -330,18 +406,20 @@ Structure every response exactly like this. Use the dividers and labels — this
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   CLEAN VERSION
-  Internal audit: [n] pass(es) — zero violations confirmed
+  Spam audit: [n] pass(es) — zero violations confirmed
+  Clarity pass: [clean / n changes made]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  [Full rewrite — every violation resolved,
-   audited clean before delivery]
+  [Full rewrite — spam-clean and clarity-checked,
+   ready to send]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   VERDICT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   [One sentence: violations found in original,
-   audit passes, send-ready confirmation]
+   spam audit passes, clarity pass result,
+   send-ready confirmation]
 ```
 
 If a section has zero violations, omit that section entirely — do not show empty headers. If all four phases are clean, skip straight to the clean version and verdict.
