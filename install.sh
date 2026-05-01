@@ -72,12 +72,37 @@ sleep 0.2
 spinner $! "spamwords.md  — master spam word reference installed"
 sleep 0.2
 
+# hooks — wire up audit loop persistence
+mkdir -p "$MEMORY_DIR/.claude/hooks"
+(curl -fsSL "$BASE_URL/.claude/hooks/spamguard-active.sh" -o "$MEMORY_DIR/.claude/hooks/spamguard-active.sh" 2>/dev/null) &
+spinner $! ".claude/hooks  — audit loop hook wired"
+sleep 0.2
+chmod +x "$MEMORY_DIR/.claude/hooks/spamguard-active.sh" 2>/dev/null || true
+
+cat > "$MEMORY_DIR/.claude/settings.json" <<'SETTINGS'
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/spamguard-active.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+SETTINGS
+
 printf "\n"
 printf "  ${DIM}────────────────────────────────────────────────────${RESET}\n"
 printf "\n"
 sleep 0.3
 
-type_out "  All done. Open Claude Code in any directory." 0.02
+type_out "  All done. Open Claude Code in this directory." 0.02
 printf "\n"
 sleep 0.2
 
