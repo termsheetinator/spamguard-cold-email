@@ -18,7 +18,7 @@
 
 ## What This Is
 
-A Claude Code skill that scans cold email copy against a comprehensive deliverability ruleset — flags every violation, rewrites every flagged line in plain English, then runs the clean version through an internal audit loop until it passes with zero violations before it reaches you.
+A Claude Code skill that scans cold email copy against a comprehensive deliverability ruleset — flags every violation, checks for ambiguous factual claims before rewriting, rewrites every flagged line in plain English, then runs a unified spam + clarity loop until both pass before anything reaches you.
 
 Paste any copy: subject lines, email bodies, follow-up sequences, CTAs, opener lines, LinkedIn DMs, or any custom variable.
 
@@ -50,10 +50,16 @@ SPAMGUARD COVERAGE
    26   banned follow-up phrases
          — clichés that signal a template instantly
 
-    1   internal audit loop
-         — clean version re-scanned before delivery
-         — rewrites until zero violations, then stops
-         — audit pass count shown in output
+    1   intent check (before rewriting)
+         — ambiguous claims about fees, outcomes,
+           or process flagged before any rewrite
+         — asks the clarifying question first
+
+    1   unified audit loop
+         — spam and clarity checked together each pass
+         — grade 5 clarity: simplest word, one idea
+           per sentence, no filler, no ambiguity
+         — loop runs until both pass in the same scan
 
     5   formatting checks
          → ALL CAPS anywhere in subject or body
@@ -109,11 +115,11 @@ Every scan returns the same structure — clean, readable, actionable:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   CLEAN VERSION
-  Internal audit: [n] pass(es) — zero violations confirmed
+  Audit: [n] pass(es) — spam clean · clarity confirmed
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  [Full rewrite — every violation resolved,
-   audited clean before delivery]
+  [Full rewrite — spam-clean, grade-5 clarity,
+   intent preserved, ready to send]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   VERDICT
@@ -125,30 +131,38 @@ Every scan returns the same structure — clean, readable, actionable:
 
 ---
 
-## The Rewrite Principle
+## How It Rewrites
 
-SpamGuard does not swap words. It rewrites lines from the idea underneath them.
+SpamGuard does not swap words. It rewrites lines from the idea underneath them — and checks for clarity in the same pass.
 
 ```
-WHAT IT DOES
+THE PROCESS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  1. Read the flagged line
-  2. Identify what it's actually trying to say
-  3. Write that in plain English — grade 5 level
-  4. Check every word in the rewrite against
-     the banned list before committing
-  5. If anything hits — rewrite the whole
-     line again from scratch
+  Before rewriting:
+  → Check flagged lines for ambiguous claims
+    about fees, outcomes, or process
+  → Ask the clarifying question if needed
+  → Never guess what the sender meant
+
+  Each rewrite pass:
+  → Spam check: every word against 300+ list
+  → Clarity check (same pass):
+     simplest word · one idea per sentence
+     no filler · grade 5 · intent preserved
+  → If either fails — rewrite and run again
+  → Deliver only when both pass together
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Replace  →  promotional language   with  observational
   Replace  →  pressure               with  permission
   Replace  →  hype                   with  specificity
+  Replace  →  complex words          with  everyday words
 
   If it sounds like an ad, a scam, or a coupon
-  — rewrite it.
+  — rewrite it. If a ten-year-old would have to
+  re-read it — simplify it.
 ```
 
 ---
