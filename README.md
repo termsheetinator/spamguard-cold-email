@@ -126,6 +126,12 @@ If it sounds like an ad, a scam, or a coupon — rewrite it.
 
 ---
 
+<div align="center">
+<img src="assets/spamguard-full-workflow-visual-2.png" alt="SpamGuard — Write Cold Emails That Get Replies" width="100%"/>
+</div>
+
+---
+
 ## Install
 
 ```bash
