@@ -79,7 +79,8 @@ spinner $! ".claude/hooks  — audit loop hook wired"
 sleep 0.2
 chmod +x "$MEMORY_DIR/.claude/hooks/spamguard-active.sh" 2>/dev/null || true
 
-cat > "$MEMORY_DIR/.claude/settings.json" <<'SETTINGS'
+HOOK_PATH="$MEMORY_DIR/.claude/hooks/spamguard-active.sh"
+cat > "$MEMORY_DIR/.claude/settings.json" <<SETTINGS
 {
   "hooks": {
     "UserPromptSubmit": [
@@ -88,7 +89,7 @@ cat > "$MEMORY_DIR/.claude/settings.json" <<'SETTINGS'
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/spamguard-active.sh"
+            "command": "bash $HOOK_PATH"
           }
         ]
       }
