@@ -1,0 +1,5 @@
+# Internal agent context — never publish
+.buildmap.md
+
+# macOS
+.DS_Store
