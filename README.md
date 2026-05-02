@@ -230,11 +230,6 @@ curl -fsSL https://raw.githubusercontent.com/termsheetinator/spamguard-cold-emai
 
 ---
 
-## Also Included In
-
-SpamGuard ships as part of **[Proximity Cold Email](https://github.com/termsheetinator/proximity-cold-email)** — the full cold email writing and auditing toolkit. Install that if you want both the Proximity Method writer and SpamGuard together.
-
----
 
 ## Files
 
