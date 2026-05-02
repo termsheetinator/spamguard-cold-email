@@ -14,12 +14,14 @@ The following words are banned in any cold email copy — subject lines, body, C
 #1
 access
 accounts
+act
 action
 ad
 additional
 affordable
 all
 amazing
+amazed
 apply
 approved
 arrange
@@ -85,6 +87,9 @@ earnings
 earnest
 equity
 extra
+expire
+expires
+fantastic
 fast
 fee
 finance
@@ -104,19 +109,25 @@ guaranteed
 hidden
 home
 human
+immediately
 income
+incredible
 install
+instant
 insurance
 interest
 investment
 invoice
+jackpot
 junk
 legal
 leverage
 life
 lifetime
+limited
 loan
 loans
+lottery
 luxury
 manufactured
 marketing
@@ -153,6 +164,7 @@ place
 placed
 placement
 pre-approved
+price
 premium
 principal
 prize
@@ -180,6 +192,7 @@ reward
 sale
 salary
 sales
+savings
 sample
 score
 selected
@@ -192,6 +205,7 @@ subscription
 success
 supplies
 terms
+thousands
 timeshare
 today
 traffic
@@ -200,6 +214,7 @@ transfer
 trial
 transfer
 undisclosed
+unbelievable
 unlimited
 unsolicited
 upfront
@@ -214,6 +229,7 @@ weight
 wholesale
 winner
 winning
+wonderful
 ```
 
 ---
@@ -257,6 +273,7 @@ These phrases are flagged as a unit regardless of surrounding context.
 - £££
 - 50% off
 - affordable deal
+- avoid (standalone — fear/pressure framing; triggers spam filters even in legitimate context like "avoid shutdown")
 - avoid bankruptcy
 - bad credit
 - big bucks

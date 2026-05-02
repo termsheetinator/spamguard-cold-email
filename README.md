@@ -32,11 +32,14 @@ No setup. No memory file. Paste and scan.
 SPAMGUARD COVERAGE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  300+  banned single words
-         — including compound and hyphenated forms
-         — lower-cost, no-cost, interest-free, money-back
+  350+  banned single words (sourced from Mailmeteor,
+         ActiveCampaign, and deliverability testing)
+         — word-by-word mechanical check: every token
+           in your copy is looked up against the list
+         — compound and hyphenated forms caught
+           (lower-cost, no-cost, interest-free, money-back)
          — plurals of banned words are also banned
-         — detection: whole-word AND substring match
+         — case-insensitive: Avoid, AVOID, avoid all flag
 
     7   high-risk phrase categories
          → Money & financial hype
@@ -91,42 +94,40 @@ Every scan returns the same structure — clean, readable, actionable:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  SPAMGUARD SCAN
+SPAMGUARD SCAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Total violations: [n]
+Total violations: [n]
 
-  ── Banned single words ──────────────────────
-  "[exact token in context]"
-    → word:    [banned word]
-    → rewrite: [plain rewrite of the line]
+── Banned single words ──────────────────────
+"[exact token in context]"
+  → word: [banned word]
+  → rewrite: [plain rewrite of the line]
 
-  ── Banned phrases ───────────────────────────
-  "[exact phrase]"
-    → rewrite: [plain rewrite]
+── Banned phrases ───────────────────────────
+"[exact phrase]"
+  → rewrite: [plain rewrite]
 
-  ── High-risk phrases ────────────────────────
-  "[exact phrase]"
-    → category: [name]
-    → rewrite:  [fix]
+── High-risk phrases ────────────────────────
+"[exact phrase]"
+  → category: [name]
+  → rewrite: [fix]
 
-  ── Formatting ───────────────────────────────
-  [flag] → [what to do]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  CLEAN VERSION
-  Audit: [n] pass(es) — spam clean · clarity confirmed
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  [Full rewrite — spam-clean, grade-5 clarity,
-   intent preserved, ready to send]
+── Formatting ───────────────────────────────
+[flag] → [what to do]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  VERDICT
+CLEAN VERSION
+Audit: [n] pass(es) — spam clean · clarity confirmed
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  [One sentence: violations found, audit passes,
-   send-ready confirmation]
+[Full rewrite — spam-clean, grade-5 clarity, intent preserved, ready to send]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERDICT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[One sentence: violations found, audit passes, send-ready confirmation]
 ```
 
 ---
@@ -170,6 +171,38 @@ THE PROCESS
 <div align="center">
 <img src="assets/spamguard-full-workflow-visual-2.png" alt="SpamGuard — Write Cold Emails That Get Replies" width="100%"/>
 </div>
+
+---
+
+## Tips for Users
+
+**How to trigger a scan:**
+
+SpamGuard has two ways to run:
+
+1. **Automatic hook** — After install, SpamGuard activates any time you ask about spam words, deliverability, trigger words, or banned words in Claude Code. Just ask naturally: *"check this email for spam"* or *"does this copy have any trigger words"* — the hook fires and the skill runs automatically.
+
+2. **Manual trigger** — Type `/spamguard` in Claude Code, paste your copy, and run the scan directly. Use this when you want to run a scan without a question attached.
+
+**What to paste:**
+
+You can paste anything — full emails, subject lines only, follow-up sequences, CTAs, opener lines, LinkedIn DMs, or a single sentence you're not sure about. SpamGuard scans whatever you give it.
+
+**Custom variables in copy:**
+
+Variables like `{first_name}` or `{company}` are fine to leave in. SpamGuard will skip them during the word check and treat the surrounding copy normally.
+
+**If SpamGuard asks you a question before rewriting:**
+
+That is the Intent Check. It runs when a flagged line contains an ambiguous claim about fees, compensation, outcomes, or process. Answer the question so SpamGuard can rewrite accurately — it will never guess what you meant.
+
+**If the clean version still feels off:**
+
+Tell SpamGuard what you don't like. Say *"the CTA still sounds too salesy"* or *"the opener is too bland"* — it will run another pass. The unified loop reruns until both spam and clarity pass together.
+
+**Keeping your word list current:**
+
+Run `curl -fsSL https://raw.githubusercontent.com/termsheetinator/spamguard-cold-email/main/install.sh | bash` to pull the latest version any time. The word list is actively maintained — new words get added as deliverability testing surfaces new triggers.
 
 ---
 

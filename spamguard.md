@@ -29,19 +29,22 @@ If they paste multiple emails in a sequence, audit each one separately and label
 
 ## Phase 1 — Banned Single Words
 
-Scan every word in the copy against this list. Flag any match — including when the banned token appears inside a compound word or hyphenated phrase.
+Tokenize the submitted copy word by word. Strip punctuation from each token. Check every token against the list below. This is a mechanical lookup — not a judgment call. If the token matches or contains a banned word, flag it. No exceptions.
 
 **Detection rule:**
-- Match on whole word (`\bword\b`) AND as a substring within compound or hyphenated forms
+- Strip trailing punctuation before checking (comma, period, exclamation, question mark)
+- Match on whole word AND as a substring within compound or hyphenated forms
 - `cash-cycle` contains `cash` — flag it
 - `sale-leaseback` contains `sale` — flag it
 - `invoice-line` contains `invoice` — flag it
-- Punctuation and hyphens do not make a banned token safe
-- Plural of a banned word is also banned (`profit` and `profits` are both listed — treat all plurals of banned words as banned even if not explicitly listed)
+- Hyphens and punctuation do not make a banned token safe
+- Plural of a banned word is also banned — treat all plurals of listed words as banned even if not explicitly listed
+- Case-insensitive: `Avoid`, `AVOID`, `avoid` are all the same match
+- Do not skip a word because it "seems fine in context" — every word gets checked, no exceptions
 
 **Full banned word list:**
 
-get, bank, credit, access, open, compare, problem, now, billing, deal, finance, financial, claims, claim, insurance, mortgage, soon, new, performance, freedom, home, sales, medical, urgent, life, marketing, investment, diagnostics, friend, cash, invoice, extra, purchase, vacation, trial, offshore, luxury, affordable, debt, bonus, removal, traffic, gold, cost, costs, sale, legal, order, hard, soft, earnest, modular, manufactured, income, rebate, warranty, stop, sample, bulk, container, roll, human, fx, rental, success, student, fast, equity, product, beverage, solution, medicine, check, profit, profits, form, junk, off, obligation, member, buy, guarantee, loan, loans, all, chance, call, million, money, foreclosure, casino, discount, diagnostic, phone, medium, timeshare, supplies, bankruptcy, name, rate, rates, terms, cheap, opportunity, prize, action, certified, accounts, refund, celebrity, covid, gift, clearance, card, quote, sex, only, vip, free, today, score, refinance, billion, winner, winning, selected, congratulations, cancel, bargain, promise, spam, subscribe, subscription, payment, password, deposit, transaction, transfer, reward, redeem, coupon, promo, promotion, hidden, warning, download, verify, breach, weight, pennies, wholesale, consolidate, pre-approved, retainer, upfront, charges, earn, earnings, salary, wage, payout, compensation, commission, yield, returns, interest, principal, collateral, leverage, capital, fund, funded, funding, raise, raising, raised, pitch, pitched, close, closed, closing, structured, structure, arrange, arranged, arrangement, place, placed, placement, originate, originated, origination, underwrite, underwritten, underwriting, syndicate, syndicated, syndication
+get, bank, credit, access, open, compare, problem, now, billing, deal, finance, financial, claims, claim, insurance, mortgage, soon, new, performance, freedom, home, sales, medical, urgent, life, marketing, investment, diagnostics, friend, cash, invoice, extra, purchase, vacation, trial, offshore, luxury, affordable, debt, bonus, removal, traffic, gold, cost, costs, sale, legal, order, hard, soft, earnest, modular, manufactured, income, rebate, warranty, stop, sample, bulk, container, roll, human, fx, rental, success, student, fast, equity, product, beverage, solution, medicine, check, profit, profits, form, junk, off, obligation, member, buy, guarantee, loan, loans, all, chance, call, million, money, foreclosure, casino, discount, diagnostic, phone, medium, timeshare, supplies, bankruptcy, name, rate, rates, terms, cheap, opportunity, prize, action, act, avoid, offer, price, savings, dollars, billionaire, amazing, amazed, click, expire, expires, fantastic, incredible, instant, jackpot, limited, lottery, thousands, unbelievable, unlimited, wonderful, immediately, certified, accounts, refund, celebrity, covid, gift, clearance, card, quote, sex, only, vip, free, today, score, refinance, billion, winner, winning, selected, congratulations, cancel, bargain, promise, spam, subscribe, subscription, payment, password, deposit, transaction, transfer, reward, redeem, coupon, promo, promotion, hidden, warning, download, verify, breach, weight, pennies, wholesale, consolidate, pre-approved, retainer, upfront, charges, earn, earnings, salary, wage, payout, compensation, commission, yield, returns, interest, principal, collateral, leverage, capital, fund, funded, funding, raise, raising, raised, pitch, pitched, close, closed, closing, structured, structure, arrange, arranged, arrangement, place, placed, placement, originate, originated, origination, underwrite, underwritten, underwriting, syndicate, syndicated, syndication
 
 **Compound and hyphenated form rule — watch specifically for:**
 - lower-cost (contains `cost`)
@@ -365,50 +368,49 @@ Every clean direction below has been verified to contain zero banned words.
 
 Structure every response exactly like this. Use the dividers and labels — this is the visual format.
 
+**Width rule: never wrap text to a narrow column. Write every line at full width — long sentences stay on one line. Do not insert artificial line breaks mid-sentence. The output should read like a normal document, not a narrow terminal printout.**
+
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  SPAMGUARD SCAN
+SPAMGUARD SCAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Total violations: [number]
+Total violations: [number]
 
-  ── Banned single words ──────────────────────
+── Banned single words ──────────────────────
 
-  "[exact token in context]"
-    → word:    [banned word]
-    → rewrite: [plain rewrite of the line]
+"[exact token in context]"
+  → word: [banned word]
+  → rewrite: [plain rewrite of the full line — written at full width, no wrapping]
 
-  ── Banned phrases ───────────────────────────
+── Banned phrases ───────────────────────────
 
-  "[exact phrase]"
-    → rewrite: [plain rewrite]
+"[exact phrase]"
+  → rewrite: [plain rewrite — full width]
 
-  ── High-risk phrases ────────────────────────
+── High-risk phrases ────────────────────────
 
-  "[exact phrase]"
-    → category: [category name]
-    → rewrite:  [plain rewrite]
+"[exact phrase]"
+  → category: [category name]
+  → rewrite: [plain rewrite — full width]
 
-  ── Formatting ───────────────────────────────
+── Formatting ───────────────────────────────
 
-  [specific flag] → [what to do]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  CLEAN VERSION
-  Spam audit: [n] pass(es) — zero violations confirmed
-  Clarity pass: [clean / n changes made]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  [Full rewrite — spam-clean and clarity-checked,
-   ready to send]
+[specific flag] → [what to do]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  VERDICT
+CLEAN VERSION
+Spam audit: [n] pass(es) — zero violations confirmed
+Clarity pass: [clean / n changes made]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  [One sentence: violations found in original,
-   spam audit passes, clarity pass result,
-   send-ready confirmation]
+[Full rewrite — spam-clean and clarity-checked, ready to send. Write each sentence at full width. Do not break lines mid-sentence.]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VERDICT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[One sentence summary: violations found, audit passes, send-ready confirmation — written at full width.]
 ```
 
 If a section has zero violations, omit that section entirely — do not show empty headers. If all four phases are clean, skip straight to the clean version and verdict.
