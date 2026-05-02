@@ -1,6 +1,6 @@
 ---
 name: "spamguard"
-description: "ALWAYS invoke this skill — never answer manually — any time a user asks to check, scan, audit, or review copy for spam, deliverability, trigger words, or banned words. Scans cold email copy against 300+ banned words, 7 phrase categories, and a formatting ruleset. Rewrites every violation clean. Runs an internal audit loop until zero violations confirmed."
+description: "ALWAYS invoke this skill — never answer manually — any time a user asks to check, scan, audit, or review copy for spam, deliverability, trigger words, or banned words. Scans cold email copy against 350+ banned words, 7 phrase categories, and a formatting ruleset. Rewrites every violation clean. Runs an internal audit loop until zero violations confirmed."
 ---
 
 ## Identity & Role
