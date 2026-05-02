@@ -1,4 +1,5 @@
 #!/bin/bash
+# SpamGuard Cold Email — v2.3.0
 set -e
 
 # Colors
